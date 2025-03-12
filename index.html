@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+        <script src="plugin/drawer/drawer.js"></script>
+        <link rel="stylesheet" href="plugin/drawer/drawer.css" />
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                    <img width="300rem" alt="Sass" src="https://sass-lang.com/assets/img/logos/logo.svg">
+                    <img width="300rem" src="https://postcss.org/assets/postcss-CsElRNOW.svg" alt="no!"><br>
+                   <b>SCSS </b>и<b> Post CSS</b><br>
+                    ( Sassy ) дерзкий CSS
+                </section>
+                <section>
+                    <img width="300rem" alt="Sass" src="https://sass-lang.com/assets/img/logos/logo.svg"><br>
+                    Sass (short for syntactically awesome style sheets)<br>
+                    это прероцессорный скриптовый язык 
+                    который компилируется в Cascading Style Sheets (CSS).<br>
+                    SassScript дополнение для математических вычислений.
+                </section>
+                <section><pre>
+                    Как начать использовать scss прямо сейчас?
+                    1. в VS code ставим плагин Live scss watch
+                    2. создаём файл .scss
+                    3. пишем код и он автоматически конвертируется в css
+                </pre></section>
+                <section>
+                Sass имеет два синтаксиса…
+                </section>
+
+                <section>
+                <img src="mem2.png" alt="сфоткай типа ъ.ъзщгй" width="100px" height="100px">
+                   НЕ нормальный
+                <pre>
+                <code>
+.button
+  padding: 3px 10px
+  font-size: 12px
+  border-radius: 3px
+  border: 1px solid #e1e4e8
+ 
+                        </code>
+                        </pre>
+                </section>
+                <section>
+                    Нормальный
+                    <img src="mem1.png" alt="сфоткай типа умный" width="100px" height="100px">
+                <pre>
+                <code>
+.button {
+  padding: 3px 10px;
+  font-size: 12px;
+  border-radius: 3px;
+  border: 1px solid #e1e4e8;
+ }
+                        </code>
+                        </pre>
+                </section>
+
+                <section>
+                    Зачем он вообще нужен?!
+                    <pre><code>
+@for $i from 1 through 10_{
+    .btn-#{$i}{
+        width: #{$i}px;
+    } 
+}
+                    </code></pre>
+                    </section>
+                    
+                    <section>
+                    <pre><code>
+.btn-1 {
+    width: 1px;
+  }
+  
+  .btn-2 {
+    width: 2px;
+  }
+  
+  .btn-3 {
+    width: 3px;
+  }
+  
+  .btn-4 {
+    width: 4px;
+  }
+  
+  .btn-5 {
+    width: 5px;
+  }
+  
+  .btn-6 {
+    width: 6px;
+  }
+  
+  .btn-7 {
+    width: 7px;
+  }
+  
+  .btn-8 {
+    width: 8px;
+  }
+  
+  .btn-9 {
+    width: 9px;
+  }
+  
+  .btn-10 {
+    width: 10px;
+  }
+                    </code></pre>
+                    </section>
+                    
+                <section>
+                <h1>Вложеность</h1>
+        Sass хочет сделать вашу жизнь проще.<br>
+        заместо повторения техже селекторов снова и снова вы можете переписывать их внутри родительских!<br>
+        Sass будет автоматически комбинировать входящие правила и внешние.
+                </section>
+                <section>
+                    <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting -->
+                    CSS BEM
+                    <pre><code contenteditable="true">
+.component {
+
+}
+
+.component__child-element {
+
+}
+            </code></pre>
+    </section>
+
+    <section>
+        <!-- https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_nesting/Using_CSS_nesting -->
+        Конкатенация SCSS for BEM
+        <pre><code contenteditable="true">
+.componen
+ &__child-element {
+
+   /*  крутая БЭМ штука только для SASS */
+
+   }
+
+ }
+</code></pre>
+</section>
+
+<section>
+                    немного про переменные в CSS
+                    <pre><code>
+ :root{
+   --css-color: red; //определение
+ }
+ p{
+     color: var(--css-color); //вызов
+ }
+                    </code></pre>
+                </section>
+
+                <section>
+                    немного про переменные в SCSS 
+                    <img src="php.png" alt="php" width="100px" height="100px">
+                    <pre><code>
+$scss-color: red; //определение
+ 
+ p{
+     color: $scss-color; //вызов
+     $scss-color: red; //переопределение
+     /*
+     переопределение внутри правила изменит только переменные внутри правил. 
+     используйте !global для глобольного переопределения
+     */
+ }
+                    </code></pre>
+                </section>
+
+                <section>
+                импорт как в питоне    
+<pre><code>
+@use 'file' as 'f';
+
+p{
+  color: f.$var;
+}
+</code></pre>
+                </section>
+
+                <section>
+сокращение свойств
+<pre><code>
+    /*scss*/
+
+    p{
+        font:{
+            family: ... ;
+            size: ... ;
+        }
+    }
+
+    /*css*/
+
+    p{
+        font-family: ... ;
+        font-size: ... ;
+    }
+</code></pre>
+                </section>
+                <section>
+                    шаблонные селекторы (класс который существует только в рамках scss)
+                    <pre><code>
+%name{ 
+    color: red; 
+}
+.red {
+     @extend %name 
+}
+                    </code></pre>
+                </section>
+                <section>
+                    @extend позволяет сделать наследование!
+                    <pre><code>
+.green{ 
+    color: green; 
+}
+.red {
+     @extend .green 
+}
+                    </code></pre>
+                </section>
+                <section>
+                    <pre><code>
+/*на самом деле это выглядит так*/
+.red, 
+.green {
+    color: green; 
+}
+                    </code></pre>
+                </section>
+<section>
+    если или
+    <pre><code>
+$var: true;
+@if $var{
+    /*свойства к примеру*/
+}
+@else{
+    /*другие свойства*/
+}
+    </code></pre>
+</section>
+<section>
+    @warn
+    <pre><code>
+    @warn "ПИПИРКА";
+    </code></pre>
+</section>
+<section>
+    @for
+    <pre><code>
+$base-color: #036;
+@for $i from 1 through 3 {
+  ul:nth-child(3n + #{$i}) {
+    background-color: lighten($base-color, $i * 5%);
+  }
+}
+    </code></pre>
+</section>
+<section>
+    @while
+    <pre><code>
+    @while true {
+        //этот код заставит sass компилятор зависнуть
+    }
+    </code></pre>
+</section>
+<section>
+@each
+    <pre><code>
+        $sizes: 40px, 50px, 80px;
+
+        @each $size in $sizes {
+          .icon-#{$size} {
+            font-size: $size;
+            height: $size;
+            width: $size;
+          }
+        }        
+    </code></pre>
+</section>
+
+<section>
+    <h1>mixin</h1>
+    позволяет делать функции, но для свойств
+    <pre><code>
+@mixin font($family, $size)
+{
+    font-family: $family;
+    font-size: $size;
+}
+
+p{
+    @include font("Comic Sans", "100px")
+}
+    </code></pre>
+</section>
+<section>
+    <pre><code>
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  @mixin horizontal-list {
+    @include reset-list;
+  
+    li {
+      display: inline-block;
+      margin: {
+        left: -2px;
+        right: 2em;
+      }
+    }
+  }
+  
+  nav ul {
+    @include horizontal-list;
+  }
+  
+    </code></pre>
+</section>
+<section>
+    <h2>postcss</h2>
+    <pre>
+    насамом деле это тоже самое но c настройкой через js.
+    можно подключать плагины на вложеность миксины и тд
+    и все это будет транслироватся в CSS который будет работать 
+    во всех браузерах
+    </pre>
+</section>
+<section>
+    <p style="white-space: pre;">
+   все всем спасибо за внимание я спать.
+   вы время видели
+   </p>
+   <img src="1.png" alt="s;eep">
+</section>
+			</div>
+
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+            console.log("ПИПИРКА ПИПИДАСТР!")
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, RevealDrawer]
+			});
+		</script>
+	</body>
+</html>
